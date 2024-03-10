@@ -1,0 +1,12 @@
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\bin\Debug\net8.0\CopyPaste.Infra.deps.json
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\bin\Debug\net8.0\CopyPaste.Infra.dll
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\bin\Debug\net8.0\CopyPaste.Infra.pdb
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\obj\Debug\net8.0\CopyPaste.Infra.csproj.AssemblyReference.cache
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\obj\Debug\net8.0\CopyPaste.Infra.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\obj\Debug\net8.0\CopyPaste.Infra.AssemblyInfoInputs.cache
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\obj\Debug\net8.0\CopyPaste.Infra.AssemblyInfo.cs
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\obj\Debug\net8.0\CopyPaste.Infra.csproj.CoreCompileInputs.cache
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\obj\Debug\net8.0\CopyPaste.Infra.dll
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\obj\Debug\net8.0\refint\CopyPaste.Infra.dll
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\obj\Debug\net8.0\CopyPaste.Infra.pdb
+C:\Users\rom\Documents\learning\blazor\CopyPaste\src\CopyPaste.Infra\obj\Debug\net8.0\ref\CopyPaste.Infra.dll

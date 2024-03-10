@@ -1,0 +1,19 @@
+﻿<CascadingValue Value=false Name="UsePopoverProvider">
+    <MudThemeProvider Theme="MyTheme"></MudThemeProvider>
+</CascadingValue>
+
+@code {
+    public static MudTheme MyTheme => new()
+        {
+            Palette = new PaletteLight()
+            {
+                Primary = "#581e75",
+                AppbarBackground = "#581e75"
+            },
+            PaletteDark = new PaletteDark()
+            {
+                Primary = "#581e75",
+                AppbarBackground = "#581e75"
+            }
+        };
+}

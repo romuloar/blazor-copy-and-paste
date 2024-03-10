@@ -1,0 +1,38 @@
+﻿@using CopyPaste.Presentation.Blazor5.Components
+@inherits LayoutComponentBase
+
+<MyMudThemeProvider />
+
+<div class="page mud-layout">
+
+    <div class="sidebar mud-elevation-1">
+        <div class="top-row mud-drawer-head">
+            <div>
+                <a class="navbar-brand" href="https://mudblazor.com/" target="_blank">CopyPaste from excel</a>
+            </div>
+        </div>
+
+        <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+        <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+            <NavMenu />
+        </div>
+
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a class="navbar-brand" href="https://natixis.groupebpce.com/" target="_blank">NATIXIS - GROUPe BPCe</a>
+        </div>
+
+        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge" Class="my-2 pt-2">
+            @Body
+        </MudContainer>
+    </main>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+

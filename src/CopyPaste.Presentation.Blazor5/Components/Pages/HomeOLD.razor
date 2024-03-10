@@ -1,0 +1,18 @@
+﻿@page "/homeOld"
+@rendermode InteractiveServer
+
+<PageTitle>Home</PageTitle>
+
+<MudTextField Label="Paste here" ValueChanged="@( (string s) => TextCopiedChanged(s) )" HelperText="Paste here" Variant="Variant.Outlined" />
+
+
+@code {
+    public string StrTextCopied { get; set; }
+
+    private void TextCopiedChanged(string texto)
+    {
+        Console.WriteLine("Texto alterado: " + texto);
+    }
+
+}
+

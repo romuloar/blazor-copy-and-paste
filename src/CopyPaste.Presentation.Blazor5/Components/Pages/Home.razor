@@ -1,0 +1,154 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<div class="row">
+    <div class="col-md-12">
+        <MudTextField Label="Paste here" Lines="5" ValueChanged="@( (string s) => TextCopiedChanged(s) )" HelperText="Paste here" Variant="Variant.Outlined" />
+        @* <MudTextField Multiline="true" Rows="5" Label="Paste here" @bind-Value="excelText" HelperText="Paste here" Variant="Variant.Outlined" @oninput="@(e => TextCopiedChanged(e))" /> *@
+    </div>
+</div>
+
+@if (tradeDataList != null && tradeDataList.Any())
+{
+    <MudDataGrid Items="@tradeDataList">
+        <Columns>
+            <PropertyColumn Property="x => x.Id" Title="Id" />
+            <PropertyColumn Property="x => x.Trader" />
+            <PropertyColumn Property="x => x.Email" />
+            <PropertyColumn Property="x => x.Date" Title="Date" />
+            <PropertyColumn Property="x => x.Amount" Title="Amount" />
+        </Columns>
+    </MudDataGrid>
+
+    <hr />
+
+    @* <MudTable Items="@tradeDataList">
+        <HeaderContent>
+            <MudTh>ID</MudTh>
+            <MudTh>NameTrader</MudTh>
+            <MudTh>Email</MudTh>
+            <MudTh>DateTrade</MudTh>
+            <MudTh>Amount</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            @{
+                foreach (var data in tradeDataList)
+                {
+                    <MudTd>
+                        @data.Id
+                        @if (!string.IsNullOrEmpty(data.IdValidationError))
+                        {
+                            <MudTooltip Text="@data.IdValidationError">
+                                <MudIcon Icon="@Icons.Material.Outlined.Warning" Class="ml-1" />
+                            </MudTooltip>
+                        }
+                    </MudTd>
+                    <MudTd>
+                        @data.NameTrader
+                        @if (!string.IsNullOrEmpty(data.NameTraderValidationError))
+                        {
+                            <MudTooltip Text="@data.NameTraderValidationError">
+                                <MudIcon Icon="@Icons.Material.Outlined.Warning" Class="ml-1" />
+                            </MudTooltip>
+                        }
+                    </MudTd>
+                    <MudTd>
+                        @data.Email
+                        @if (!string.IsNullOrEmpty(data.EmailValidationError))
+                        {
+                            <MudTooltip Text="@data.EmailValidationError">
+                                <MudIcon Icon="@Icons.Material.Outlined.Warning" Class="ml-1" />
+                            </MudTooltip>
+                        }
+                    </MudTd>
+                    <MudTd>
+                        @data.DateTrade.ToShortDateString()
+                        @if (!string.IsNullOrEmpty(data.DateTradeValidationError))
+                        {
+                            <MudTooltip Text="@data.DateTradeValidationError">
+                                <MudIcon Icon="@Icons.Material.Outlined.Warning" Class="ml-1" />
+                            </MudTooltip>
+                        }
+                    </MudTd>
+                    <MudTd>
+                        @data.Amount
+                        @if (!string.IsNullOrEmpty(data.AmountValidationError))
+                        {
+                            <MudTooltip Text="@data.AmountValidationError">
+                                <MudIcon Icon="@Icons.Material.Outlined.Warning" Class="ml-1" />
+                            </MudTooltip>
+                        }
+                    </MudTd>
+                }
+            }
+        </RowTemplate>
+    </MudTable> *@
+}
+
+@code {
+    private class TradeDataTransfer
+    {
+        public int Id { get; set; }
+        public string NameTrader { get; set; }
+        public string Email { get; set; }
+        public DateTime DateTrade { get; set; }
+        public decimal Amount { get; set; }
+
+        // Mensagens de erro de validação
+        public string IdValidationError { get; set; }
+        public string NameTraderValidationError { get; set; }
+        public string EmailValidationError { get; set; }
+        public string DateTradeValidationError { get; set; }
+        public string AmountValidationError { get; set; }
+    }
+
+    private List<TradeDataTransfer> tradeDataList = new List<TradeDataTransfer>();
+    private string excelText;
+
+    public string StrTextCopied { get; set; }
+
+    private void TextCopiedChanged(string texto)
+    {
+        excelText = texto;
+        ProcessExcelData();
+    }
+
+    private void ProcessExcelData()
+    {
+        // Dividir o texto colado em linhas
+        var lines = excelText.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        //excelText.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+
+        // Limpar a lista de dados antes de preenchê-la novamente
+        tradeDataList.Clear();
+
+        // Iterar pelas linhas do texto colado
+        foreach (var line in lines)
+        {
+            // Dividir a linha em colunas
+            var columns = line.Split('\t', StringSplitOptions.RemoveEmptyEntries);
+
+            // Verificar se há dados suficientes para preencher um objeto TradeDataTransfer
+            if (columns.Length >= 5)
+            {
+                // Tentar converter as colunas para os tipos corretos
+                if (int.TryParse(columns[0], out int id) &&
+                    DateTime.TryParse(columns[3], out DateTime dateTrade) &&
+                    decimal.TryParse(columns[4], out decimal amount))
+                {
+                    // Criar um novo objeto TradeDataTransfer e adicioná-lo à lista
+                    var data = new TradeDataTransfer
+                    {
+                        Id = id,
+                        NameTrader = columns[1],
+                        Email = columns[2],
+                        DateTrade = dateTrade,
+                        Amount = amount
+                    };
+                    tradeDataList.Add(data);
+                }
+            }
+        }
+    }
+}
+
